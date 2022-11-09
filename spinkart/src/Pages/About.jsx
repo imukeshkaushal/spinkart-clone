@@ -8,12 +8,9 @@ function About() {
         <Navbar/>
         <div style={{width:"80%", margin:"auto", marginTop : "20px", fontSize:"20px"}}>
           <p>Ideakart is a site that gives u an idea about the book you want to buy. We offer a huge collection of books in diverse categories.
-
           <br/>
           <br/>
-
           We have a user friendly search engine and a quick delivery system. With this we even provide best discounts on our books. You can write to us for any idea or any help you need.
-          
           <br/>
           <br/>
           
