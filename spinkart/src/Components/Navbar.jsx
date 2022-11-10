@@ -1,6 +1,7 @@
 import { Button, Input } from '@chakra-ui/react';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import logo from "../assets/spin.png"
 
 function Navbar() {
   const [text,setText] = useState("")
@@ -18,7 +19,7 @@ function Navbar() {
     <div style={{border:"1px solid blue", backgroundColor : "#2874F0", paddingTop:"5px", paddingBottom:"5px", display:"flex"}}>
        <div style={{width : "70%",display:"flex", alignItems:"center", marginLeft:"150px"}}>
         <Link path = "/" to ="/">
-            <img style={{width:"150px"}} src='spin.png' alt='logo'/>
+            <img style={{width:"150px"}} src={logo} alt='logo'/>
         </Link>
         <Input style={{backgroundColor : "white", height:"35px",width:"340px", borderTopRightRadius : "0px", borderBottomRightRadius:"0px", marginLeft:"50px"}} 
         type="text" placeholder = "Search Here" value={text} onChange = {searchData}/>
