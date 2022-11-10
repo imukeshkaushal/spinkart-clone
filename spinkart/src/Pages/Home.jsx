@@ -12,7 +12,7 @@ const getData = ({value}) => {
 
 function Home() {
   const [text,setText] = useState("");
-  const [value,setValue] = useState("css");
+  const [value,setValue] = useState("cbse");
   const [data,setData] = useState([]);
   const [loading,setLoading] = useState(false)
   useEffect(() => {
@@ -59,11 +59,19 @@ function Home() {
         <div className = "box">
             {
                 data.map((el) => {
-                    let thumbnail = el.volumeInfo.imageLinks && el.volumeInfo.imageLinks.smallThumbnail;
-                    let amount = el.saleInfo.listPrice && el.saleInfo.listPrice.amount
+                    let thumbnail = el?.volumeInfo?.imageLinks?.smallThumbnail
+                    let amount = el?.saleInfo?.listPrice?.amount
                     // console.log(el.volumeInfo.industryIndentifiers && el.voluemInfo.industryIndentifiers[0].identifier)
                     let iden =  el.volumeInfo.industryIdentifiers && el.volumeInfo.industryIdentifiers[0].identifier
-                    if(thumbnail != undefined && amount != undefined){
+                    let publisher = el?.volumeInfo?.publisher;
+                    let pageCount = el?.volumeInfo?.pageCount;
+                    let printType = el?.volumeInfo?.printType;
+                    // let category = el?.volumeInfo?.categories[0];
+                    let saleInfo = el?.saleInfo?.country;
+                    let language = el?.volumeInfo?.language;
+                    let date = el?.volumeInfo?.publishedDate;
+                   let version = el?.volumeInfo?.contentVersion;
+                    if(thumbnail != undefined && amount != undefined && publisher != undefined && pageCount != undefined && printType != undefined && saleInfo != undefined && language != undefined && date != undefined && version != undefined){
                         return(
                             <div className = "inner" key = {el.id}>
                                 <img className = "booksImage" src={thumbnail} alt={el.volumeInfo.title}/>

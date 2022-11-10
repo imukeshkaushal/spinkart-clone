@@ -89,10 +89,7 @@ function Product() {
                   <Td>Print-Type</Td>
                   <Td>{item?.volumeInfo?.printType}</Td>
                 </Tr>
-                <Tr>
-                  <Td>Category</Td>
-                  <Td>{item?.volumeInfo?.categories[0]}</Td>
-                </Tr>
+                
                 <Tr>
                   <Td>Country</Td>
                   <Td>{item?.saleInfo?.country}</Td>
