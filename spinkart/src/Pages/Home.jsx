@@ -3,8 +3,8 @@ import { Divider, Heading } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import { Button, Input } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-
+import { Link, NavLink } from 'react-router-dom';
+import Product from './Product';
 const getData = ({value}) => {
     return fetch(`https://www.googleapis.com/books/v1/volumes?q=${value}&key=AIzaSyAdgbyhgNNxMkp69b0DHSl74huvqZFnM5A&maxResults=40`)
     .then(res => res.json());
@@ -61,6 +61,8 @@ function Home() {
                 data.map((el) => {
                     let thumbnail = el.volumeInfo.imageLinks && el.volumeInfo.imageLinks.smallThumbnail;
                     let amount = el.saleInfo.listPrice && el.saleInfo.listPrice.amount
+                    // console.log(el.volumeInfo.industryIndentifiers && el.voluemInfo.industryIndentifiers[0].identifier)
+                    let iden =  el.volumeInfo.industryIdentifiers && el.volumeInfo.industryIdentifiers[0].identifier
                     if(thumbnail != undefined && amount != undefined){
                         return(
                             <div className = "inner" key = {el.id}>
@@ -71,14 +73,14 @@ function Home() {
                                 <div className = "view">
                                     <div className='view-port'>
                                         <CalendarIcon/>
-                                        <p>View Now</p>
+                                        <p onClick={() => console.log(el.volumeInfo.industryIdentifiers[0].identifier)}>View Now</p>
                                     </div>
                                     <Divider className='devider' variant="solid" orientation='vertical' style={{height:"15px",color:"black"}} />
                                     <div className='view-port'>
                                         <HamburgerIcon/>
-                                        <p>More Details</p>
-                                    </div>
-                                    
+                                        <NavLink className="formal"
+                                        to={`/product/${iden}`}>More Read</NavLink>                                      
+                                    </div>                                  
                                 </div>
                             </div>
                         )
