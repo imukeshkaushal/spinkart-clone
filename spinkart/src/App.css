@@ -92,3 +92,41 @@
 .devider{
   padding-bottom: 10px;
 }
+.formal{
+  font-size: 12px;
+  color: black;
+}
+.Outside{
+  display: flex;
+  margin-top: 20px;
+}
+.singleImg{
+  border: 1px solid #cecece;
+  width: 80%;
+  height: 500px;
+  padding: 20px;
+  border-radius: 10px;
+
+}
+.bookbuy{
+  margin-top: 20px;
+  /* padding-left: 10px; */
+}
+.left{
+  width: 35%;
+}
+.right{
+  width: 65%;
+}
+.right>h2{
+  font-size: 22px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.snippet{
+  margin-top: 20px;
+  border: 1px solid #cecece;
+  padding: 30px;
+  font-size: 18px;
+  border-radius: 10px;
+}
