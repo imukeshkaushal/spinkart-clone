@@ -130,3 +130,9 @@
   font-size: 18px;
   border-radius: 10px;
 }
+.contact{
+  position: relative;
+}
+.optional{
+  border:20px solid red;
+}

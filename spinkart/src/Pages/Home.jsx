@@ -12,7 +12,7 @@ const getData = ({value}) => {
 
 function Home() {
   const [text,setText] = useState("");
-  const [value,setValue] = useState("html");
+  const [value,setValue] = useState("css");
   const [data,setData] = useState([]);
   const [loading,setLoading] = useState(false)
   useEffect(() => {
