@@ -12,7 +12,7 @@ const getData = ({value}) => {
 
 function Home() {
   const [text,setText] = useState("");
-  const [value,setValue] = useState("css");
+  const [value,setValue] = useState("cbse");
   const [data,setData] = useState([]);
   const [loading,setLoading] = useState(false)
   useEffect(() => {
@@ -22,6 +22,10 @@ function Home() {
       setLoading(false);
     //   setProducts(res);
       setData(res.items);
+    })
+    .catch(err => {
+      setLoading(false)
+      console.log(err)
     })
   },[value])
   
@@ -34,6 +38,11 @@ function Home() {
     console.log(value);
   }
   
+  if(loading){
+    return <div style={{marginLeft: "45%", marginTop : "20%"}}>
+      <img src='https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif' alt='loading'/>
+    </div>
+  }
 
   return (
         <div >
@@ -59,11 +68,19 @@ function Home() {
         <div className = "box">
             {
                 data.map((el) => {
-                    let thumbnail = el.volumeInfo.imageLinks && el.volumeInfo.imageLinks.smallThumbnail;
-                    let amount = el.saleInfo.listPrice && el.saleInfo.listPrice.amount
+                    let thumbnail = el?.volumeInfo?.imageLinks?.smallThumbnail
+                    let amount = el?.saleInfo?.listPrice?.amount
                     // console.log(el.volumeInfo.industryIndentifiers && el.voluemInfo.industryIndentifiers[0].identifier)
                     let iden =  el.volumeInfo.industryIdentifiers && el.volumeInfo.industryIdentifiers[0].identifier
-                    if(thumbnail != undefined && amount != undefined){
+                    let publisher = el?.volumeInfo?.publisher;
+                    let pageCount = el?.volumeInfo?.pageCount;
+                    let printType = el?.volumeInfo?.printType;
+                    // let category = el?.volumeInfo?.categories[0];
+                    let saleInfo = el?.saleInfo?.country;
+                    let language = el?.volumeInfo?.language;
+                    let date = el?.volumeInfo?.publishedDate;
+                   let version = el?.volumeInfo?.contentVersion;
+                    if(thumbnail != undefined && amount != undefined && publisher != undefined && pageCount != undefined && printType != undefined && saleInfo != undefined && language != undefined && date != undefined && version != undefined){
                         return(
                             <div className = "inner" key = {el.id}>
                                 <img className = "booksImage" src={thumbnail} alt={el.volumeInfo.title}/>
@@ -73,7 +90,7 @@ function Home() {
                                 <div className = "view">
                                     <div className='view-port'>
                                         <CalendarIcon/>
-                                        <p onClick={() => console.log(el.volumeInfo.industryIdentifiers[0].identifier)}>View Now</p>
+                                        <NavLink to={`/product/${iden}`}>View Now</NavLink>
                                     </div>
                                     <Divider className='devider' variant="solid" orientation='vertical' style={{height:"15px",color:"black"}} />
                                     <div className='view-port'>

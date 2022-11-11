@@ -25,7 +25,7 @@ function Contact() {
               <FormLabel mt={4}>Description</FormLabel>
               <textarea style={{width:"100%",padding:"10px", height:"150px",borderRadius:"10px"}}></textarea>
             </FormControl>
-            <Button mt={4}>Submit</Button>
+            <Button colorScheme="green" mt={4}>Submit</Button>
           </div>
 
         </div>
