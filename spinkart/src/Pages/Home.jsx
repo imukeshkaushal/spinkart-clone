@@ -23,6 +23,10 @@ function Home() {
     //   setProducts(res);
       setData(res.items);
     })
+    .catch(err => {
+      setLoading(false)
+      console.log(err)
+    })
   },[value])
   
   const handleChange = (e) => {
@@ -34,6 +38,11 @@ function Home() {
     console.log(value);
   }
   
+  if(loading){
+    return <div style={{marginLeft: "45%", marginTop : "20%"}}>
+      <img src='https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif' alt='loading'/>
+    </div>
+  }
 
   return (
         <div >
@@ -81,7 +90,7 @@ function Home() {
                                 <div className = "view">
                                     <div className='view-port'>
                                         <CalendarIcon/>
-                                        <p onClick={() => console.log(el.volumeInfo.industryIdentifiers[0].identifier)}>View Now</p>
+                                        <NavLink to={`/product/${iden}`}>View Now</NavLink>
                                     </div>
                                     <Divider className='devider' variant="solid" orientation='vertical' style={{height:"15px",color:"black"}} />
                                     <div className='view-port'>

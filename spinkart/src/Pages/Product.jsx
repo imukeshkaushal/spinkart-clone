@@ -16,7 +16,7 @@ function Product() {
   console.log(params)
 
   useEffect(() => {
-    console.log("useEffect")
+    
     getUserById(params.id)
       .then((res) => {
         setLoading(true)
@@ -36,7 +36,9 @@ function Product() {
  
 
   if(loading){
-    return <div>Loading...</div>
+    return <div style={{marginLeft: "45%", marginTop : "20%"}}>
+      <img src='https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif' alt='loading'/>
+    </div>
   }
 
   return (
@@ -45,11 +47,14 @@ function Product() {
       <div style={{width:"80%", margin : "auto", marginTop : "20px"}}>
         <Breadcrumb>
           <BreadcrumbItem>
-            <BreadcrumbLink href="">Home</BreadcrumbLink>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
           </BreadcrumbItem>
-
+          
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Product</BreadcrumbLink>
+          </BreadcrumbItem>
           <BreadcrumbItem isCurrentPage>
-            <BreadcrumbLink>Product</BreadcrumbLink>
+            <BreadcrumbLink>{item?.volumeInfo?.title}</BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
 
