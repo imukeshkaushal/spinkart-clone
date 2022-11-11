@@ -25,6 +25,7 @@ function Signin() {
       if(res.token){
         loginUser(res.token);
         console.log(res.token)
+        
         navigate("/dashboard")
       }
     })

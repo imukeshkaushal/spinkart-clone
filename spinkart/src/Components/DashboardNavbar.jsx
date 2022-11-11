@@ -38,8 +38,8 @@ function DashboardNavbar() {
               <MenuItem>Dashboard</MenuItem>
               <MenuItem>Account Information</MenuItem>
               <MenuItem>Notification</MenuItem>
-              <MenuItem onClick={logoutUser}>SignOut</MenuItem>
-              <MenuItem>Attend a Workshop</MenuItem>
+              <MenuItem onClick={logoutUser}>Sign Out</MenuItem>
+          
             </MenuList>
         </Menu>
        </div>
