@@ -1,10 +1,11 @@
-import { CalendarIcon, HamburgerIcon } from '@chakra-ui/icons';
-import { Divider, Heading } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react'
+import { CalendarIcon, ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { Divider, Heading, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import { Button, Input } from '@chakra-ui/react';
 import { Link, NavLink } from 'react-router-dom';
 import Product from './Product';
+import { AuthContext } from '../Context/AuthContext';
 const getData = ({value}) => {
     return fetch(`https://www.googleapis.com/books/v1/volumes?q=${value}&key=AIzaSyAdgbyhgNNxMkp69b0DHSl74huvqZFnM5A&maxResults=40`)
     .then(res => res.json());
@@ -15,6 +16,7 @@ function Home() {
   const [value,setValue] = useState("cbse");
   const [data,setData] = useState([]);
   const [loading,setLoading] = useState(false)
+  const {authState,logoutUser} = useContext(AuthContext);
   useEffect(() => {
     setLoading(true);
     getData({value})
@@ -48,18 +50,30 @@ function Home() {
         <div >
             <div style={{border:"1px solid blue", backgroundColor : "#2874F0", paddingTop:"5px", paddingBottom:"5px", display:"flex"}}>
             <div style={{width : "70%",display:"flex", alignItems:"center", marginLeft:"150px"}}>
-             <img style={{width:"150px"}} src='spin.png' alt='logo'/>
+            <Link path = "/dashboard" to ="/dashboard">
+                <img style={{width:"150px"}} src="spin.png" alt='logo'/>
+            </Link>
 
              <Input style={{backgroundColor : "white", height:"35px",width:"340px", borderTopRightRadius : "0px", borderBottomRightRadius:"0px", marginLeft:"50px"}} 
              type="text" placeholder = "Search Here" value = {text} onChange = {handleChange} />
 
              <button style={{backgroundColor :"white",width:"80px" , lineHeight:"35px", padding:"0px", borderBottomRightRadius : "10px",borderTopRightRadius : "10px",paddingLeft:"10px", paddingRight:"10px"}} onClick={handleClick}>Search</button>
             </div>
-            <div style={{width:"32%", color:"white",display:"flex", gap:"20px",alignItems:"center"}} >
-             <Link path = "/about" to = "/about">About</Link>
-             <Link path = "/contact" to = "/contact">Contact</Link>
-             <Link path = "/signin" to = "/signin">Sign In</Link>
-             <Link path = "/privacy-policy" to = "/privacy-policy">Privacy Policy</Link>
+            <div style={{width:"20%", color:"white",display:"flex", gap:"20px",alignItems:"center"}} >
+            <Link path="/dashboard/about" to="/dashboard/about">About</Link>
+            <Menu>
+                <MenuButton as={Button} colorScheme = "transparent" rightIcon={<ChevronDownIcon />}>
+                  Mukesh Kaushal
+                </MenuButton>
+                <MenuList color="black">
+                  <MenuItem>Dashboard</MenuItem>
+                  <MenuItem>Account Information</MenuItem>
+                  <MenuItem>Notification</MenuItem>
+                  <MenuItem onClick={logoutUser}>Sign Out</MenuItem>
+                  
+                </MenuList>
+            </Menu>
+             
             </div>
         </div>
 
@@ -96,7 +110,7 @@ function Home() {
                                     <div className='view-port'>
                                         <HamburgerIcon/>
                                         <NavLink className="formal"
-                                        to={`/product/${iden}`}>More Read</NavLink>                                      
+                                        to={`/products/${iden}`}>More Read</NavLink>                                      
                                     </div>                                  
                                 </div>
                             </div>
