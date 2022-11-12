@@ -35,9 +35,9 @@ function DashboardNavbar() {
               Mukesh Kaushal
             </MenuButton>
             <MenuList color="black">
-              <MenuItem>Dashboard</MenuItem>
-              <MenuItem>Account Information</MenuItem>
-              <MenuItem>Notification</MenuItem>
+              <MenuItem><Link path="/dashboard/addProduct" to = "/dashboard/addProduct">Dashboard</Link></MenuItem>
+              <MenuItem><Link path="/dashboard/account-info" to = "/dashboard/account-info">Account Information</Link></MenuItem>
+              <MenuItem><Link path="/dashboard/notification" to="/dashboard/notification">Notifications</Link></MenuItem>
               <MenuItem onClick={logoutUser}>Sign Out</MenuItem>
           
             </MenuList>
