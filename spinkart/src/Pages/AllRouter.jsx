@@ -11,6 +11,9 @@ import Dashboard from './Dashboard';
 import DashboardAbout from './DashboardAbout';
 import PrivateRoute from "../Context/PrivateRoute"
 import DashboardProduct from './DashboardProduct';
+import AddProducts from './AddProducts';
+import AccountInfo from './AccountInfo';
+import Notification from './Notification';
 // import Signup from './Signup';
 
 function AllRouter() {
@@ -23,11 +26,13 @@ function AllRouter() {
         <Route path='/privacy-policy' element={<PrivacyPolicy/>}></Route>
         <Route path='/product/:id' element={<Product/>}></Route>
         <Route path='*' element = {<NotFound/>}></Route>
+        <Route path='/dashboard/addProduct' element = {<PrivateRoute><AddProducts/></PrivateRoute>}></Route>
         <Route path='/dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}></Route>
         <Route path='/products/:id' element={<PrivateRoute><DashboardProduct/></PrivateRoute>}></Route>
         <Route path='/dashboard/about' element = {<PrivateRoute><DashboardAbout/></PrivateRoute>}></Route>
-       
-    </Routes>
+        <Route path='/dashboard/account-info' element={<PrivateRoute><AccountInfo/></PrivateRoute>}></Route>
+        <Route path='/dashboard/notification' element={<PrivateRoute><Notification/></PrivateRoute>}></Route>
+      </Routes>
   )
 }
 
