@@ -9,6 +9,7 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
+import { useToast } from '@chakra-ui/react'
 import React, { useRef, useState } from "react";
 import DashboardNavbar from "../Components/DashboardNavbar";
 import {
@@ -45,7 +46,7 @@ const intialState = {
 function AddProducts() {
   const [formState, setFormState] = useState(intialState);
   const [records, setRecords] = useState([]);
- 
+  const toast = useToast()
 
   
 
@@ -54,6 +55,13 @@ function AddProducts() {
     const newRecords = { ...formState, id: new Date().getTime().toString() };
     setRecords([...records, newRecords]);
     console.log(records);
+    toast({
+      title: 'Congratulation ! Records Successfully Added.',
+      description: "You Can check at Product Sections! Thank You.",
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    })
   };
 
   const handleChange = (e) => {

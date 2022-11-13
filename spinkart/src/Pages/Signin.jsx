@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import Navbar from '../Components/Navbar'
 import { AuthContext } from '../Context/AuthContext';
+import { useToast } from '@chakra-ui/react'
 
 function Signin() {
   const [email,setEmail] = useState("");
@@ -10,6 +11,7 @@ function Signin() {
   const [loading,setLoading] = useState(false);
   const {loginUser,authState} = useContext(AuthContext);
   const navigate = useNavigate();
+  const toast = useToast()
 
   const handleSubmit = () => {
     setLoading(true)
@@ -25,13 +27,38 @@ function Signin() {
       if(res.token){
         loginUser(res.token);
         console.log(res.token)
+        toast({
+          title: 'Congratulation ! Login Successfully.',
+          description: "Now you can manage your products in the dashboard Section",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+
         
         navigate("/dashboard")
+      }
+      else{
+        toast({
+          title: 'Something Went Wrong! ',
+          description: "You are using Wrong Credentials. Please enter correct infomation",
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        })
+       
       }
     })
     .catch((err) => {
       console.log(err);
       setLoading(false)
+      toast({
+        title: 'Something Went Wrong! ',
+        description: "You are using Wrong Credentials. Please enter correct infomation",
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      })
      
     })
   }
