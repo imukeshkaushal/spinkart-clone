@@ -62,7 +62,7 @@ function Home() {
             <div style={{width:"20%", color:"white",display:"flex", gap:"20px",alignItems:"center"}} >
             <Link path="/dashboard/about" to="/dashboard/about">About</Link>
             <Menu>
-                <MenuButton as={Button} colorScheme = "transparent" rightIcon={<ChevronDownIcon />}>
+                <MenuButton style={{fontWeight : "normal"}} as={Button} colorScheme = "transparent" rightIcon={<ChevronDownIcon />}>
                   Mukesh Kaushal
                 </MenuButton>
                 <MenuList color="black">

@@ -9,7 +9,7 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useRef, useState } from "react";
 import DashboardNavbar from "../Components/DashboardNavbar";
 import {
   Box,
@@ -34,7 +34,37 @@ import {
 } from '@chakra-ui/react'
 import { Link } from "react-router-dom";
 
+const intialState = {
+  name: "",
+  experience: "",
+  file: "",
+  type: "",
+  platform: "",
+};
+
 function AddProducts() {
+  const [formState, setFormState] = useState(intialState);
+  const [records, setRecords] = useState([]);
+ 
+
+  
+
+  const handleSubmit = () => {
+    
+    const newRecords = { ...formState, id: new Date().getTime().toString() };
+    setRecords([...records, newRecords]);
+    console.log(records);
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const val = type === "checkbox" ? checked : value;
+    setFormState({ ...formState, [name]: val });
+  };
+
+ let reviews = records.length;
+ console.log(reviews)
+
   return (
     <div>
       <DashboardNavbar />
@@ -65,9 +95,10 @@ function AddProducts() {
                       fontSize: "20px",
                       color: "white",
                       borderRadius: "15px",
+                      boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
                     }}
                   >
-                    0/1 Products Approved
+                    0/{reviews} Products Approved
                   </div>
                   <div
                     style={{
@@ -82,9 +113,10 @@ function AddProducts() {
                       fontSize: "20px",
                       color: "white",
                       borderRadius: "15px",
+                      boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
                     }}
                   >
-                    1 Under Review
+                    {reviews} Under Review
                   </div>
                   <div
                     style={{
@@ -99,6 +131,7 @@ function AddProducts() {
                       fontSize: "20px",
                       color: "white",
                       borderRadius: "15px",
+                      boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
                     }}
                   >
                     0 Could'nt Pass Review
@@ -114,36 +147,51 @@ function AddProducts() {
 
                     <FormControl style={{ width: "100%" }}>
                       <FormLabel mt={8}>Product Name</FormLabel>
-                      <Textarea></Textarea>
+                      <Textarea  
+                      name="name"
+                      value={formState.name}
+                      onChange={handleChange}/>
 
                       <FormLabel mt={8}>Your Experience</FormLabel>
-                      <Textarea></Textarea>
+                      <Textarea
+                      name="experience"
+                      value={formState.experience}
+                      onChange={handleChange}/>
 
                       <FormLabel mt={8}>Upload File</FormLabel>
                       <Input
                         p={1}
                         pb={4}
                         type="file"
-                        placeholder="Enter Bank Name"
+                        name="file"
+                        value={formState.file}
+                        onChange={handleChange}
                       />
 
                       <FormLabel mt={8}>
                         Did You Bought it Offline or Online?
                       </FormLabel>
-                      <Select>
-                        <option>Online</option>
-                        <option>Offline</option>
+                      <Select 
+                      name="type"
+                      value={formState.type}
+                      onChange={handleChange}>
+                        <option value="">Select Type</option>
+                        <option value="Online">Online</option>
+                        <option value="Offline">Offline</option>
                       </Select>
 
                       <FormLabel mt={8}>Platform</FormLabel>
-                      <Select>
-                        <option>Select Platform</option>
-                        <option>Amazon</option>
-                        <option>Flipkart</option>
-                        <option>Snapdeal</option>
-                        <option>ShopClues</option>
-                        <option>Reliance Digital</option>
-                        <option>Others</option>
+                      <Select 
+                      name="platform"
+                      value={formState.platform}
+                      onChange={handleChange}>
+                        <option value="">Select Platform</option>
+                        <option value="Amazon">Amazon</option>
+                        <option value="Flipkart">Flipkart</option>
+                        <option value="Snapdeal">Snapdeal</option>
+                        <option value="ShopClues">ShopClues</option>
+                        <option value="Reliance Digital">Reliance Digital</option>
+                        <option value="Others">Others</option>
                       </Select>
 
                       <Box
@@ -154,7 +202,7 @@ function AddProducts() {
                           gap: "50px",
                         }}
                       >
-                        <Button mb={2} mt={8} colorScheme="green">
+                        <Button mb={2} mt={8} colorScheme="green" onClick={handleSubmit}>
                           SUBMIT
                         </Button>
                       </Box>
@@ -173,20 +221,27 @@ function AddProducts() {
                                   <Thead>
                                     <Tr>
                                       <Th>Product Name</Th>
-                                      <Th>Media</Th>
+                                      <Th>Experience</Th>
                                       <Th>How to Use</Th>
                                       <Th>Approval Status</Th>
                                     </Tr>
                                   </Thead>
-                                  <Tbody>
-                                    <Tr>
-                                      <Td>Test</Td>
-                                      <Td>Test</Td>
-                                      <Td>Test</Td>
-                                      <Td>Test</Td>
-                                    </Tr>
-                                    
-                                  </Tbody>
+                                  { 
+                                    records.map((el) => {
+                                      return (
+                                        <Tbody key={el.id}>
+                                        <Tr>
+                                          <Td>{el.name}</Td>
+                                          <Td>{el.experience}</Td>
+                                          <Td>{el.type}</Td>
+                                          <Td>Pending for Review</Td>
+                                        </Tr>
+                                        
+                                      </Tbody>
+                                      )
+                                    })
+                                  }
+                                  
                                   
                                 </Table>
                               </TableContainer>
