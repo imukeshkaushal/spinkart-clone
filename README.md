@@ -6,9 +6,9 @@ SpinKart is a site that gives u an idea about the book you want to buy. We offer
 
 SpinKart is a site that gives u an idea and a platform for the book you want. We offer a huge collection of books in diverse categories. We have a user friendly search engine and a quick delivery system. With this we even provide best discounts on our books. You can write to us for any idea or any help you need.
 
-## Netlify Link
+## Vercel Link
 
-Visit Link : https://venerable-gecko-b98a54.netlify.app/
+Visit Link : https://spinkart.vercel.app/
 
 ## Languages Used
 
